@@ -9,13 +9,15 @@ public class SnakeAndLadder {
 	final int LADDER = 3;
 	final int START_POSITION = 0;
 	final int WINING_POSITION = 100;
-
 	int position = 0;
+	static int countDiceRoll = 0;
 
 	// function to get dice number between 1 to 6
 	public static int getDiceNumber() {
+		countDiceRoll++;
 		Random random = new Random();
 		return random.nextInt(6) + 1;
+
 	}
 
 	// function to get number between 1 to 3
@@ -26,7 +28,7 @@ public class SnakeAndLadder {
 
 	// check for player position
 	public void checkPlayerPosition() {
-		while (position != 100) {
+		while (position != WINING_POSITION) {
 
 			int diceNumber = getDiceNumber();
 			int moveType = typeOfMove();
@@ -66,6 +68,8 @@ public class SnakeAndLadder {
 		if (position == WINING_POSITION) {
 			System.out.println("player won the game!!!!");
 		}
+
+		System.out.println("Total number of times dice rolls: " + countDiceRoll);
 
 	}
 
