@@ -2,13 +2,15 @@ import java.util.Random;
 
 public class SnakeAndLadder {
 	// initializing variable
-	int position = 0;
+
 	final int PLAYERS = 1;
 	final int NO_PLAY = 1;
 	final int SNAKE = 2;
 	final int LADDER = 3;
 	final int START_POSITION = 0;
 	final int WINING_POSITION = 100;
+
+	int position = 0;
 
 	// function to get dice number between 1 to 6
 	public static int getDiceNumber() {
@@ -28,9 +30,11 @@ public class SnakeAndLadder {
 
 			int diceNumber = getDiceNumber();
 			int moveType = typeOfMove();
-
+			System.out.println("--------------------------");
 			System.out.println("dice number: " + diceNumber);
 			System.out.println("move type: " + moveType);
+			System.out.println("--------------------------");
+
 			switch (moveType) {
 			case NO_PLAY:
 				System.out.println("No play: player in same position");
@@ -44,9 +48,14 @@ public class SnakeAndLadder {
 
 				break;
 			case LADDER:
-				position = (position + diceNumber);
+				int temp = (position + diceNumber);
 
-				System.out.println("You got Ladder move forword to the position: " + position);
+				if (temp > WINING_POSITION) {
+					System.out.println("you can't move");
+				} else {
+					position = temp;
+					System.out.println("You got Ladder move forword to the position: " + position);
+				}
 
 				break;
 			}
