@@ -3,10 +3,12 @@ import java.util.Random;
 public class SnakeAndLadder {
 	// initializing variable
 	int position = 0;
+	final int PLAYERS = 1;
 	final int NO_PLAY = 1;
 	final int SNAKE = 2;
 	final int LADDER = 3;
 	final int START_POSITION = 0;
+	final int WINING_POSITION = 100;
 
 	// function to get dice number between 1 to 6
 	public static int getDiceNumber() {
@@ -20,30 +22,47 @@ public class SnakeAndLadder {
 		return random.nextInt(3) + 1;
 	}
 
-	int diceNumber = getDiceNumber();
-	int moveType = typeOfMove();
+	// check for player position
+	public void checkPlayerPosition() {
+		while (position != 100) {
 
-	// function to get NO_PLAY,SNAKE AND LADDER
-	public void playing() {
-		switch (moveType) {
-		case NO_PLAY:
-			System.out.println("No play: player in same position");
-			break;
-		case SNAKE:
-			System.out.println("player got snake");
-			position = (position - diceNumber);
-			break;
-		case LADDER:
-			System.out.println("player got ladder");
-			position = (position + diceNumber);
-			break;
+			int diceNumber = getDiceNumber();
+			int moveType = typeOfMove();
+
+			System.out.println("dice number: " + diceNumber);
+			System.out.println("move type: " + moveType);
+			switch (moveType) {
+			case NO_PLAY:
+				System.out.println("No play: player in same position");
+				break;
+			case SNAKE:
+				position = (position - diceNumber);
+				if (position < 0) {
+					position = START_POSITION;
+				}
+				System.out.println("You got Snake move backward to the position: " + position);
+
+				break;
+			case LADDER:
+				position = (position + diceNumber);
+
+				System.out.println("You got Ladder move forword to the position: " + position);
+
+				break;
+			}
+
+			System.out.println("player position:" + position);
+		}
+		// checking wining condition
+		if (position == WINING_POSITION) {
+			System.out.println("player won the game!!!!");
 		}
 
 	}
 
 	public static void main(String[] args) {
-		SnakeAndLadder  object = new SnakeAndLadder ();
-		object.playing();
+		SnakeAndLadder object = new SnakeAndLadder();
+		object.checkPlayerPosition();
 	}
 
 }
