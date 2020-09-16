@@ -1,15 +1,18 @@
 import java.util.Random;
 
 public class SnakeAndLadder {
-	// initializing variable
-
+	// Declared Constant variable
 	final int PLAYERS = 1;
 	final int NO_PLAY = 1;
 	final int SNAKE = 2;
 	final int LADDER = 3;
 	final int START_POSITION = 0;
 	final int WINING_POSITION = 100;
-	int position = 0;
+
+	// Declared instance variable
+	int playerPosition = 0;
+
+	// Declare static variable
 	static int countDiceRoll = 0;
 
 	// function to get dice number between 1 to 6
@@ -17,7 +20,6 @@ public class SnakeAndLadder {
 		countDiceRoll++;
 		Random random = new Random();
 		return random.nextInt(6) + 1;
-
 	}
 
 	// function to get number between 1 to 3
@@ -28,54 +30,48 @@ public class SnakeAndLadder {
 
 	// check for player position
 	public void checkPlayerPosition() {
-		while (position != WINING_POSITION) {
-
+		while (playerPosition != WINING_POSITION) {
 			int diceNumber = getDiceNumber();
 			int moveType = typeOfMove();
 			System.out.println("--------------------------");
 			System.out.println("dice number: " + diceNumber);
 			System.out.println("move type: " + moveType);
 			System.out.println("--------------------------");
-
 			switch (moveType) {
 			case NO_PLAY:
 				System.out.println("No play: player in same position");
 				break;
 			case SNAKE:
-				position = (position - diceNumber);
-				if (position < 0) {
-					position = START_POSITION;
+				playerPosition = (playerPosition - diceNumber);
+				if (playerPosition < 0) {
+					playerPosition = START_POSITION;
 				}
-				System.out.println("You got Snake move backward to the position: " + position);
+				System.out.println("You got Snake move backward to the position: " + playerPosition);
 
 				break;
 			case LADDER:
-				int temp = (position + diceNumber);
+				int tempPlayerPos = (playerPosition + diceNumber);
 
-				if (temp > WINING_POSITION) {
+				if (tempPlayerPos > WINING_POSITION) {
 					System.out.println("you can't move");
 				} else {
-					position = temp;
-					System.out.println("You got Ladder move forword to the position: " + position);
+					playerPosition = tempPlayerPos;
+					System.out.println("You got Ladder move forword to the position: " + playerPosition);
 				}
-
 				break;
 			}
-
-			System.out.println("player position:" + position);
+			System.out.println("player position:" + playerPosition);
 		}
 		// checking wining condition
-		if (position == WINING_POSITION) {
+		if (playerPosition == WINING_POSITION) {
 			System.out.println("player won the game!!!!");
 		}
-
 		System.out.println("Total number of times dice rolls: " + countDiceRoll);
-
 	}
 
 	public static void main(String[] args) {
-		SnakeAndLadder object = new SnakeAndLadder();
-		object.checkPlayerPosition();
+		SnakeAndLadder salObject = new SnakeAndLadder();
+		salObject.checkPlayerPosition();
 	}
 
 }
