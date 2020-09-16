@@ -1,12 +1,14 @@
 import java.util.Random;
 
 public class SnakeAndLadder {
-	// initializing variable
-	int position = 0;
+	// declared constant variable
 	final int NO_PLAY = 1;
 	final int SNAKE = 2;
 	final int LADDER = 3;
 	final int START_POSITION = 0;
+
+	// initializing variable
+	int playerPosition = 0;
 
 	// function to get dice number between 1 to 6
 	public static int getDiceNumber() {
@@ -31,19 +33,17 @@ public class SnakeAndLadder {
 			break;
 		case SNAKE:
 			System.out.println("player got snake");
-			position = (position - diceNumber);
+			playerPosition = (playerPosition - diceNumber);
 			break;
 		case LADDER:
 			System.out.println("player got ladder");
-			position = (position + diceNumber);
+			playerPosition = (playerPosition + diceNumber);
 			break;
 		}
-
 	}
 
 	public static void main(String[] args) {
-		SnakeAndLadder  object = new SnakeAndLadder ();
-		object.playing();
+		SnakeAndLadder salObject = new SnakeAndLadder();
+		salObject.playing();
 	}
-
 }
